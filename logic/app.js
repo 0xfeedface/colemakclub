@@ -102,12 +102,14 @@ requireBackspaceCorrectionToggle = document.querySelector('.requireBackspaceCorr
 wordLimitModeButton			= document.querySelector('.wordLimitModeButton'),
 wordLimitModeInput			= document.querySelector('.wordLimitModeInput'),
 timeLimitModeButton			= document.querySelector('.timeLimitModeButton'),
-timeLimitModeInput			= document.querySelector('.timeLimitModeInput')
+timeLimitModeInput			= document.querySelector('.timeLimitModeInput'),
 wordScrollingModeButton		= document.querySelector('.wordScrollingModeButton'),
 punctuationModeButton       = document.querySelector('.punctuationModeButton'),
 showCheatsheetButton		= document.querySelector('.showCheatsheetButton');
 playSoundOnClickButton      = document.querySelector('.playSoundOnClick');
 playSoundOnErrorButton      = document.querySelector('.playSoundOnError');
+
+timeLimitModeInput.value = localStorage.getItem('timeLimitModeSeconds') || 60;
 
 start();
 init();
@@ -319,6 +321,7 @@ timeLimitModeInput.addEventListener('change', ()=> {
 
 	// set the dom element to a whole number (in case the user puts in a decimal)
 	timeLimitModeInput.value = wholeSecond;
+	localStorage.setItem('timeLimitModeSeconds', wholeSecond);
 
 	seconds = wholeSecond%60;
 	minutes = Math.floor(wholeSecond/60);
